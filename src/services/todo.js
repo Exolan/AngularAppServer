@@ -1,4 +1,5 @@
 import { collection } from "../database/database.js";
+import { ObjectId } from "mongodb";
 
 async function getTodos() {
 	let response = await collection.find({}).toArray();
@@ -11,7 +12,12 @@ async function postTodo(title, content) {
 	return response;
 }
 
-async function deleteTodo() {}
+async function deleteTodo(id) {
+	let response = await collection.deleteOne({
+		_id: new ObjectId(id),
+	});
+	return response;
+}
 
 export const todoService = {
 	getTodos,
