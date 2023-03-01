@@ -1,21 +1,20 @@
-import {collection} from '../database/database.js';
+import { collection } from "../database/database.js";
 
-async function getTodos(){
-    let response = await collection.find({}).toArray()
-    console.log(response);
-    return response;
+async function getTodos() {
+	let response = await collection.find({}).toArray();
+	console.log(response);
+	return response;
 }
 
-async function postTodo(){
-
+async function postTodo(title, content) {
+	let response = await collection.insertOne({ title, content });
+	return response;
 }
 
-async function deleteTodo(){
-
-}
+async function deleteTodo() {}
 
 export const todoService = {
-    getTodos,
-    postTodo,
-    deleteTodo
-}
+	getTodos,
+	postTodo,
+	deleteTodo,
+};
