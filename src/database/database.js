@@ -7,6 +7,6 @@ const dbName = "test";
 
 await client.connect();
 console.log("Success");
-const db = client.db(dbName);
+export const db = client.db(dbName);
 
 export const collection = db.collection("todo");

@@ -1,3 +1,4 @@
+import { upload, uploadBucket } from "../middleware/upload.js";
 import { todoService } from "../services/todo.js";
 
 async function getTodos(req, res) {
@@ -17,11 +18,16 @@ async function deleteTodo(req, res) {
 	res.json(response);
 }
 
-async function editTodo(req, res){
-	const {id} = req.params;
-	const {title, content} = req.body;
+async function editTodo(req, res) {
+	const { id } = req.params;
+	const { title, content } = req.body;
 	const response = await todoService.editTodo(id, title, content);
 	res.json(response);
+}
+
+async function uploadImage(req, res) {
+	uploadBucket(req.file.filename);
+	res.json(req.file.filename);
 }
 
 export const todoController = {
@@ -29,4 +35,5 @@ export const todoController = {
 	postTodo,
 	deleteTodo,
 	editTodo,
+	uploadImage,
 };

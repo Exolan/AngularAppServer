@@ -18,9 +18,9 @@ async function deleteTodo(id) {
 	return response;
 }
 
-async function editTodo(id, title, content){
-	let query = {_id: new ObjectId(id)};
-	let replacement = {title, content}
+async function editTodo(id, title, content) {
+	let query = { _id: new ObjectId(id) };
+	let replacement = { title, content };
 	let response = await collection.replaceOne(query, replacement);
 	return response;
 }
@@ -29,5 +29,5 @@ export const todoService = {
 	getTodos,
 	postTodo,
 	deleteTodo,
-	editTodo
+	editTodo,
 };
