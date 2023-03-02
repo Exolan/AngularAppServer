@@ -3,7 +3,6 @@ import { ObjectId } from "mongodb";
 
 async function getTodos() {
 	let response = await collection.find({}).toArray();
-	console.log(response);
 	return response;
 }
 
@@ -19,8 +18,16 @@ async function deleteTodo(id) {
 	return response;
 }
 
+async function editTodo(id, title, content){
+	let query = {_id: id};
+	let replacement = {title, content}
+	let response = await collection.replaceOne(query, replacement);
+	return response;
+}
+
 export const todoService = {
 	getTodos,
 	postTodo,
 	deleteTodo,
+	editTodo
 };

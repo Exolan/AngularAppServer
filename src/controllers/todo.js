@@ -12,8 +12,15 @@ async function postTodo(req, res) {
 }
 
 async function deleteTodo(req, res) {
-	const { id } = req.body;
+	const { id } = req.params;
 	const response = await todoService.deleteTodo(id);
+	res.json(response);
+}
+
+async function editTodo(req, res){
+	const {id} = req.params;
+	const {title, content} = req.body;
+	const response = await todoService.editTodo(id, title, content);
 	res.json(response);
 }
 
@@ -21,4 +28,5 @@ export const todoController = {
 	getTodos,
 	postTodo,
 	deleteTodo,
+	editTodo,
 };
