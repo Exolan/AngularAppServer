@@ -19,7 +19,7 @@ async function deleteTodo(id) {
 }
 
 async function editTodo(id, title, content){
-	let query = {_id: id};
+	let query = {_id: new ObjectId(id)};
 	let replacement = {title, content}
 	let response = await collection.replaceOne(query, replacement);
 	return response;
